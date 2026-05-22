@@ -6,14 +6,15 @@ RUN apk add \
   curl \
   # nslookup & friends
   bind-tools \
-  tcpdump \
-  tshark \
+  # Traffic capture
+  tcpdump tshark \
+  # Listing open connections
+  lsof \
+  # Network utils
   iproute2 \
   # Provides libresolv, required to launch kubernetes binaries.
-  gcompat
-
-# Make bash kill words in a sensical way
-RUN echo "stty werase undef" >> ~/.bashrc && \
-  echo bind \'"\C-w":backward-kill-word\' >> ~/.bashrc
+  gcompat \
+  # Misc sysadmin tools
+  btop ncdu
 
 ENTRYPOINT ["/bin/fish"]
