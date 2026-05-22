@@ -3,4 +3,18 @@
   "extends": [
     "github>nadiamoe/renovate-config",
   ],
+  customManagers: [
+    {
+      customType: 'regex',
+      depNameTemplate: 'kubernetes-sigs/cri-tools',
+      datasourceTemplate: 'github-releases',
+      versioningTemplate: 'semver',
+      managerFilePatterns: [
+        'Dockerfile',
+      ],
+      matchStrings: [
+        'CRICTL_VERSION=(?<currentValue>[\\w.-]+)',
+      ],
+    },
+  ],
 }
