@@ -17,4 +17,4 @@ RUN apk add \
   # Misc sysadmin tools
   btop ncdu
 
-ENTRYPOINT ["/bin/fish"]
+ENTRYPOINT ["/usr/bin/fish"]
