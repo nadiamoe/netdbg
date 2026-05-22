@@ -1,7 +1,8 @@
 FROM alpine:3.23.4@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11
 
 RUN apk add \
-  bash \
+  # Suckless shell
+  fish \
   curl \
   # nslookup & friends
   bind-tools \
@@ -15,4 +16,4 @@ RUN apk add \
 RUN echo "stty werase undef" >> ~/.bashrc && \
   echo bind \'"\C-w":backward-kill-word\' >> ~/.bashrc
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/fish"]
