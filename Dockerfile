@@ -17,10 +17,8 @@ RUN <<EOF
     btop ncdu       # Misc sysadmin tools
 PACKAGES
   )
-
-  # Querying term properties is broken over kubectl debug/exec.
-  echo "set -Ua fish_features no-query-term" >> /etc/fish/conf.d/no-query-term.fish
 EOF
 
+ENV fish_features=no-query-term
 
 ENTRYPOINT ["/usr/bin/fish"]
