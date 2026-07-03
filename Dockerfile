@@ -10,7 +10,10 @@ RUN tar -xzvf *.tar.gz
 FROM alpine:3.24.1@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
 
 COPY --from=crictl /crictl/crictl /usr/local/bin/
-RUN apk add \
+RUN <<EOF
+  set -e
+
+  apk add \
   # Suckless shell
   fish \
   curl \
@@ -26,5 +29,10 @@ RUN apk add \
   gcompat \
   # Misc sysadmin tools
   btop ncdu
+
+  # Querying term properties is broken over kubectl debug/exec.
+  echo "set -Ua fish_features no-query-term" >> /etc/fish/conf.d/no-query-term.fish
+EOF
+
 
 ENTRYPOINT ["/usr/bin/fish"]
