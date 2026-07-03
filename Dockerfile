@@ -22,6 +22,7 @@ RUN <<EOF
     lsof            # Listing open connections
     iproute2        # Network utils
     gcompat         # Provides libresolv, required to launch kubernetes binaries.
+    containerd-ctr  # containerd CLI
     btop ncdu       # Misc sysadmin tools
 PACKAGES
   )
