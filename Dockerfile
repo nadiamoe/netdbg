@@ -19,7 +19,7 @@ PACKAGES
   )
 
   # Querying term properties is broken over kubectl debug/exec.
-  echo "set -Ua fish_features no-query-terminal" >> /etc/fish/conf.d/no-query-terminal.fish
+  echo "set -Ua fish_features no-query-term" >> /etc/fish/conf.d/no-query-term.fish
 EOF
 
 
