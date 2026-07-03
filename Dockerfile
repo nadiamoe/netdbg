@@ -13,22 +13,18 @@ COPY --from=crictl /crictl/crictl /usr/local/bin/
 RUN <<EOF
   set -e
 
-  apk add \
-  # Suckless shell
-  fish \
-  curl \
-  # nslookup & friends
-  bind-tools \
-  # Traffic capture
-  tcpdump tshark \
-  # Listing open connections
-  lsof \
-  # Network utils
-  iproute2 \
-  # Provides libresolv, required to launch kubernetes binaries.
-  gcompat \
-  # Misc sysadmin tools
-  btop ncdu
+  # Lil sed fuckery to be able to comment why we install each package.
+  apk --no-cache add $(sed 's/#.*//' <<'PACKAGES'
+    bash fish       # Suckless shells
+    curl            # Old reliable
+    bind-tools      # nslookup & friends
+    tcpdump tshark  # Traffic capture
+    lsof            # Listing open connections
+    iproute2        # Network utils
+    gcompat         # Provides libresolv, required to launch kubernetes binaries.
+    btop ncdu       # Misc sysadmin tools
+PACKAGES
+  )
 
   # Querying term properties is broken over kubectl debug/exec.
   echo "set -Ua fish_features no-query-term" >> /etc/fish/conf.d/no-query-term.fish
