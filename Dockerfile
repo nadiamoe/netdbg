@@ -6,6 +6,7 @@ RUN <<EOF
   # Lil sed fuckery to be able to comment why we install each package.
   apk --no-cache add $(sed 's/#.*//' <<'PACKAGES'
     bash fish       # Suckless shells
+    bat             # cat with syntax highlighting and pagination
     curl            # Old reliable
     bind-tools      # nslookup & friends
     tcpdump tshark  # Traffic capture
