@@ -15,6 +15,7 @@ RUN <<EOF
     gcompat         # Provides libresolv, required to launch kubernetes binaries.
     cri-tools       # crictl
     containerd-ctr  # containerd CLI
+    kubectl k9s     # Kubernetes CLI tools
     btop ncdu       # Misc sysadmin tools
 PACKAGES
   )
