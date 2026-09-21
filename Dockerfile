@@ -11,7 +11,7 @@ RUN <<EOF
     bind-tools      # nslookup & friends
     tcpdump tshark  # Traffic capture
     lsof            # Listing open connections
-    iproute2        # Network utils
+    iproute2 iperf3 ethtool # Network utils
     gcompat         # Provides libresolv, required to launch kubernetes binaries.
     cri-tools       # crictl
     containerd-ctr  # containerd CLI
