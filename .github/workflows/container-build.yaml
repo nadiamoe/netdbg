@@ -31,13 +31,6 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
-          registry: docker.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Log into registry ${{ env.REGISTRY }}
-        if: github.event_name != 'pull_request'
-        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
-        with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -71,8 +64,6 @@ jobs:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: |-
-            docker.io/${{ env.IMAGE_NAME}}:latest
-            docker.io/${{ env.IMAGE_NAME}}:latest-${{ steps.commit-meta.outputs.revshort }}
             ghcr.io/${{ env.IMAGE_NAME}}:latest
             ghcr.io/${{ env.IMAGE_NAME}}:latest-${{ steps.commit-meta.outputs.revshort }}
           labels: ${{ steps.meta.outputs.labels }}
